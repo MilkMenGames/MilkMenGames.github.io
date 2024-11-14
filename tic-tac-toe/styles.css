@@ -8,9 +8,11 @@ body {
 /* Game Board */
 .game-board {
     display: grid;
-    grid-template-columns: repeat(3, 100px);
-    grid-gap: 15px;
-    justify-content: center;
+    grid-template-columns: repeat(3, 1fr); /* Ensures three equal columns */
+    grid-template-rows: repeat(3, 1fr); /* Ensures three equal rows */
+    gap: 15px;
+    width: 320px; /* Fixed width to make it square */
+    height: 320px; /* Fixed height to make it square */
     margin: 2rem auto;
     padding: 1rem;
     border-radius: 10px;
@@ -20,8 +22,6 @@ body {
 
 /* Game Cells */
 .cell {
-    width: 100px;
-    height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -58,4 +58,12 @@ body {
 /* Navigation Bar */
 nav {
     background-color: rgba(0, 0, 0, 0.6);
-    border-radius:
+    border-radius: 10px;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 2rem;
+    color: rgba(255, 255, 255, 0.8);
+}
