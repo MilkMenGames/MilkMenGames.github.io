@@ -1,6 +1,7 @@
 const board = Array(9).fill(null);
 const human = 'X';
 const computer = 'O';
+let isPlayerTurn = true; // Controls turn logic
 
 const gameBoard = document.getElementById('gameBoard');
 const messageDiv = document.getElementById('message');
@@ -16,12 +17,16 @@ function createBoard() {
 }
 
 function handleHumanMove(event) {
+    if (!isPlayerTurn) return; // Prevent input during the computer's turn
+
     const index = event.target.dataset.index;
     if (board[index] || checkWinner(board)) return;
 
     board[index] = human;
     event.target.textContent = human;
     event.target.classList.add('taken');
+
+    isPlayerTurn = false; // Block player input until the computer moves
 
     if (!checkWinner(board) && board.includes(null)) {
         setTimeout(handleComputerMove, 500);
@@ -38,6 +43,8 @@ function handleComputerMove() {
     const cell = document.querySelector(`.cell[data-index='${randomIndex}']`);
     cell.textContent = computer;
     cell.classList.add('taken');
+
+    isPlayerTurn = true; // Allow player input again
 
     updateGameState();
 }
@@ -80,6 +87,9 @@ function resetGame() {
         board.fill(null);
         gameBoard.innerHTML = '';
         gameBoard.classList.remove('fade-out');
+
+        // Reset turn
+        isPlayerTurn = true;
 
         // Recreate the board
         createBoard();
