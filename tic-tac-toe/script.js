@@ -64,9 +64,26 @@ function updateGameState() {
     if (winner) {
         messageDiv.textContent = `${winner} wins!`;
         document.querySelectorAll('.cell').forEach(cell => cell.classList.add('taken'));
+        setTimeout(resetGame, 2000); // Wait 2 seconds before resetting the game
     } else if (!board.includes(null)) {
         messageDiv.textContent = `It's a draw!`;
+        setTimeout(resetGame, 2000); // Wait 2 seconds before resetting the game
     }
+}
+
+function resetGame() {
+    messageDiv.textContent = '';
+    gameBoard.classList.add('fade-out');
+
+    setTimeout(() => {
+        // Clear the board
+        board.fill(null);
+        gameBoard.innerHTML = '';
+        gameBoard.classList.remove('fade-out');
+
+        // Recreate the board
+        createBoard();
+    }, 500); // Fade-out duration (match the CSS fade-out animation)
 }
 
 createBoard();
