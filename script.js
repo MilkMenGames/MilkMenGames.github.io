@@ -15,6 +15,10 @@ fetch(`https://api.github.com/repos/your_username/your_repo_name/contents/${game
       listItem.appendChild(link);
       gameList.appendChild(listItem);
     });
+
+    // Add scrollable class to the game list
+    const gameListContainer = document.querySelector('.game-list');
+    gameListContainer.classList.add('scrollable');
   })
   .catch(error => {
     console.error("Error fetching game list:", error);
