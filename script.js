@@ -2,7 +2,7 @@
 const gamesFolder = "games";
 
 // Get a list of folder names in the games folder
-fetch(`https://api.github.com/repos/your_username/your_repo_name/contents/${gamesFolder}`)
+fetch(`https://api.github.com/repos/MilkMenGames/MilkMenGames.github.io/contents/${gamesFolder}`)
   .then(response => response.json())
   .then(data => {
     const gameList = document.querySelector("ul");
